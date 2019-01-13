@@ -101,17 +101,119 @@ class Table extends Component {
       players: (
         this.state.players.concat(
           {
-            firstname: "New",
-            lastname: "Player",
-            sport: "Sport",
-            club: "Club",
-            city: "City",
+            firstname: this.state.firstNameInput,
+            lastname: this.state.lastNameInput,
+            sport: this.state.sportInput,
+            club: this.state.clubInput,
+            city: this.state.cityInput,
             id: this.state.players.length + 1
           }
         )
       )
     }
   )
+
+  londonFilter = () => this.setState(
+    {
+      players: (
+        this.state.players.filter(player => {
+          if(player.city === "London"){
+            return player
+          }
+        })
+      )
+    }
+  )
+
+  losangFilter = () => this.setState(
+    {
+      players: (
+        this.state.players.filter(player => {
+          if(player.city === "Los Angeles"){
+            return player
+          }
+        })
+      )
+    }
+  )
+
+  phileFilter = () => this.setState(
+    {
+      players: (
+        this.state.players.filter(player => {
+          if(player.city === "Philadelphia"){
+            return player
+          }
+        })
+      )
+    }
+  )
+
+  joelFilter = () => this.setState(
+    {
+      players: (
+        this.state.players.filter(player => {
+          if(player.firstname === "Joel"){
+            return player
+          }
+        })
+      )
+    }
+  )
+
+  aaronFilter = () => this.setState(
+    {
+      players: (
+        this.state.players.filter(player => {
+          if(player.firstname === "Aaron"){
+            return player
+          }
+        })
+      )
+    }
+  )
+
+  footyFilter = () => this.setState(
+    {
+      players: (
+        this.state.players.filter(player => {
+          if(player.sport === "Football"){
+            return player
+          }
+        })
+      )
+    }
+  )
+
+  basketFilter = () => this.setState(
+    {
+      players: (
+        this.state.players.filter(player => {
+          if(player.sport === "Basketball"){
+            return player
+          }
+        })
+      )
+    }
+  )
+
+  americanFilter = () => this.setState(
+    {
+      players: (
+        this.state.players.filter(player => {
+          if(player.sport === "American Football"){
+            return player
+          }
+        })
+      )
+    }
+  )
+
+  updateFirstName = (event) => this.setState({ firstNameInput: event.target.value })
+  updateLastName = (event) => this.setState({ lastNameInput: event.target.value })
+  updateSport = (event) => this.setState({ sportInput: event.target.value })
+  updateCity = (event) => this.setState({ cityInput: event.target.value })
+  updateClub = (event) => this.setState({ clubInput: event.target.value })
 
   render() {
     return(
@@ -127,21 +229,62 @@ class Table extends Component {
             club={player.club}
             city={player.city}
             id={player.id}
+            updateFirstName={this.updateFirstName}
+            updateLastName={this.updateLastName}
+            updateSport={this.updateSport}
+            updateCity={this.updateCity}
+            updateClub={this.updateClub}
             addPlayer={this.addPlayer}
+            londonFilter={this.londonFilter}
+            losangFilter={this.losangFilter}
+            phileFilter={this.phileFilter}
+            joelFilter={this.joelFilter}
+            aaronFilter={this.aaronFilter}
+            footyFilter={this.footyFilter}
+            basketFilter={this.basketFilter}
+            americanFilter={this.americanFilter}
           />
         ))}
-        <input className="playerWrapperElement" value="Enter First Name"></input>
-        <input className="playerWrapperElement" value="Enter Last Name"></input>
-        <input className="playerWrapperElement" value="Enter Sport"></input>
-        <input className="playerWrapperElement" value="Enter City"></input>
-        <input className="playerWrapperElement" value="Enter Club"></input>
+        <input
+        className="playerWrapperElement"
+        onChange={(event)=>this.updateFirstName(event)}
+        defaultValue="Enter First Name"
+        />
+        <input
+        className="playerWrapperElement"
+        onChange={(event)=>this.updateLastName(event)}
+        defaultValue="Enter Last Name"></input>
+        <input
+        className="playerWrapperElement"
+        onChange={(event)=>this.updateSport(event)}
+        defaultValue="Enter Sport"
+        />
+        <input
+        className="playerWrapperElement"
+        onChange={(event)=>this.updateCity(event)}
+        defaultValue="Enter City"
+        />
+        <input
+        className="playerWrapperElement"
+        onChange={(event)=>this.updateClub(event)}
+        defaultValue="Enter Club"
+        />
         <button onClick={()=>this.addPlayer()}>Add sportsman</button>
         <h4>Filters:</h4>
-        First Name<input list="name"></input>
+        <button onClick={()=>this.londonFilter()}>Filter by London</button>
+        <button onClick={()=>this.losangFilter()}>Filter by Los Angeles</button>
+        <button onClick={()=>this.phileFilter()}>Filter by Philadelphia</button>
+        <button onClick={()=>this.joelFilter()}>Filter by Joels</button>
+        <button onClick={()=>this.aaronFilter()}>Filter by Aarons</button>
+        <button onClick={()=>this.footyFilter()}>Filter by Football</button>
+        <button onClick={()=>this.basketFilter()}>Filter by Basketball</button>
+        <button onClick={()=>this.americanFilter()}>Filter by American Football</button>
+        {/* First Name<input list="name"></input>
         <datalist id="name">
-          <option value="todd"></option>
-        </datalist>
+          <option value={this.state.players[0].firstname}></option>
+        </datalist>*/}
       </div>
+
 
     )
   }
