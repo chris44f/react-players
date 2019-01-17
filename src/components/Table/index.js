@@ -113,107 +113,72 @@ class Table extends Component {
     }
   )
 
-  londonFilter = () => this.setState(
+  cityFilter = (location) => this.setState(
     {
       players: (
         this.state.players.filter(player => {
-          if(player.city === "London"){
-            return player
+          for(let i=0, filter=""; i<player.city.length; i++){
+            filter += player.city.charAt(i)
+            if(filter === location){
+              return player
+            }
           }
         })
       )
     }
   )
 
-  losangFilter = () => this.setState(
+  nameFilter = (name) => this.setState(
     {
       players: (
         this.state.players.filter(player => {
-          if(player.city === "Los Angeles"){
-            return player
+          for(let i=0, filter=""; i<player.firstname.length; i++){
+            filter += player.firstname.charAt(i)
+            if(filter === name){
+              return player
+            }
           }
         })
       )
     }
   )
 
-  phileFilter = () => this.setState(
+  sportFilter = (game) => this.setState(
     {
       players: (
         this.state.players.filter(player => {
-          if(player.city === "Philadelphia"){
-            return player
+          for(let i=0, filter=""; i<player.sport.length; i++){
+            filter += player.sport.charAt(i)
+            if(filter === game){
+              return player
+            }
           }
         })
       )
     }
   )
 
-  joelFilter = () => this.setState(
-    {
-      players: (
-        this.state.players.filter(player => {
-          if(player.firstname === "Joel"){
-            return player
-          }
-        })
-      )
-    }
-  )
-
-  aaronFilter = () => this.setState(
-    {
-      players: (
-        this.state.players.filter(player => {
-          if(player.firstname === "Aaron"){
-            return player
-          }
-        })
-      )
-    }
-  )
-
-  footyFilter = () => this.setState(
-    {
-      players: (
-        this.state.players.filter(player => {
-          if(player.sport === "Football"){
-            return player
-          }
-        })
-      )
-    }
-  )
-
-  basketFilter = () => this.setState(
-    {
-      players: (
-        this.state.players.filter(player => {
-          if(player.sport === "Basketball"){
-            return player
-          }
-        })
-      )
-    }
-  )
-
-  americanFilter = () => this.setState(
-    {
-      players: (
-        this.state.players.filter(player => {
-          if(player.sport === "American Football"){
-            return player
-          }
-        })
-      )
-    }
-  )
+  // genericButtonFilter = (game) => this.setState(
+  //   {
+  //     players: (
+  //       this.state.players.filter(player => {
+  //         if(player.sport === game){
+  //           return player
+  //         }
+  //       })
+  //     )
+  //   }
+  // )
 
   updateFirstName = (event) => this.setState({ firstNameInput: event.target.value })
   updateLastName = (event) => this.setState({ lastNameInput: event.target.value })
   updateSport = (event) => this.setState({ sportInput: event.target.value })
   updateCity = (event) => this.setState({ cityInput: event.target.value })
   updateClub = (event) => this.setState({ clubInput: event.target.value })
+
+  updateCityFilter = (event) => this.cityFilter(event.target.value)
+  updateNameFilter = (event) => this.nameFilter(event.target.value)
+  updateSportFilter = (event) => this.sportFilter(event.target.value)
 
   render() {
     return(
@@ -235,14 +200,10 @@ class Table extends Component {
             updateCity={this.updateCity}
             updateClub={this.updateClub}
             addPlayer={this.addPlayer}
-            londonFilter={this.londonFilter}
-            losangFilter={this.losangFilter}
-            phileFilter={this.phileFilter}
-            joelFilter={this.joelFilter}
-            aaronFilter={this.aaronFilter}
-            footyFilter={this.footyFilter}
-            basketFilter={this.basketFilter}
-            americanFilter={this.americanFilter}
+            cityFilter={this.cityFilter}
+            nameFilter={this.nameFilter}
+            sportFilter={this.sportFilter}
+            updateFilter={this.updateFilter}
           />
         ))}
         <input
@@ -271,21 +232,24 @@ class Table extends Component {
         />
         <button onClick={()=>this.addPlayer()}>Add sportsman</button>
         <h4>Filters:</h4>
-        <button onClick={()=>this.londonFilter()}>Filter by London</button>
-        <button onClick={()=>this.losangFilter()}>Filter by Los Angeles</button>
-        <button onClick={()=>this.phileFilter()}>Filter by Philadelphia</button>
-        <button onClick={()=>this.joelFilter()}>Filter by Joels</button>
-        <button onClick={()=>this.aaronFilter()}>Filter by Aarons</button>
-        <button onClick={()=>this.footyFilter()}>Filter by Football</button>
-        <button onClick={()=>this.basketFilter()}>Filter by Basketball</button>
-        <button onClick={()=>this.americanFilter()}>Filter by American Football</button>
-        {/* First Name<input list="name"></input>
-        <datalist id="name">
-          <option value={this.state.players[0].firstname}></option>
-        </datalist>*/}
+        Filter by first name:
+        <input
+        className="filterInput"
+        onChange={(event)=>this.updateNameFilter(event)}
+        />
+        <br />
+        Filter by city:
+        <input
+        className="filterInput"
+        onChange={(event)=>this.updateCityFilter(event)}
+        />
+        <br />
+        Filter by sport:
+        <input
+        className="filterInput"
+        onChange={(event)=>this.updateSportFilter(event)}
+        />
       </div>
-
-
     )
   }
 }
