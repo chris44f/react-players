@@ -2,98 +2,24 @@ import React, { Component } from 'react';
 import './index.css';
 import Player from '../Player/index.js'
 
+
+
 class Table extends Component {
   state = {
     players: [
-      {
-        firstname: "First Name",
-        lastname: "Last Name",
-        sport: "Sport",
-        club: "Club",
-        city: "City",
-        id: 1
-      },
-      {
-        firstname: "Ben",
-        lastname: "Simmons",
-        sport: "Basketball",
-        club: "76ers",
-        city: "Philadelphia",
-        id: 2
-      },
-      {
-        firstname: "Joel",
-        lastname: "Embiid",
-        sport: "Basketball",
-        club: "76ers",
-        city: "Philadelphia",
-        id: 3
-      },
-      {
-        firstname: "Joel",
-        lastname: "Campbell",
-        sport: "Football",
-        club: "Frosinone",
-        city: "Lazio",
-        id: 4
-      },
-      {
-        firstname: "Sergej",
-        lastname: "Milinkovic-Savic",
-        sport: "Football",
-        club: "S.S. Lazio",
-        city: "Lazio",
-        id: 5
-      },
-      {
-        firstname: "Lebron",
-        lastname: "James",
-        sport: "Basketball",
-        club: "Lakers",
-        city: "Los Angeles",
-        id: 6
-      },
-      {
-        firstname: "Todd",
-        lastname: "Gurley",
-        sport: "American Football",
-        club: "Rams",
-        city: "Los Angeles",
-        id: 7
-      },
-      {
-        firstname: "Odell",
-        lastname: "Beckham Jr",
-        sport: "American Football",
-        club: "Giants",
-        city: "New York",
-        id: 8
-      },
-      {
-        firstname: "Aaron",
-        lastname: "Ramsey",
-        sport: "Football",
-        club: "Arsenal",
-        city: "London",
-        id: 9
-      },
-      {
-        firstname: "Eden",
-        lastname: "Hazard",
-        sport: "Football",
-        club: "Chelsea",
-        city: "London",
-        id: 10
-      },
-      {
-        firstname: "Aaron",
-        lastname: "Rodgers",
-        sport: "American Football",
-        club: "Packers",
-        city: "Green Bay",
-        id: 11
-      }
+      {firstname: "First Name",
+      lastname: "Last Name",
+      sport: "Sport",
+      club: "Club",
+      city: "City",
+      id: 1}
     ]
+  }
+
+  componentWillMount() {
+    fetch('/Users/Chris/workspace/react-players/public/db.json')
+    .then( response => response.json() )
+    .then( data => this.setState({ players: JSON.parse(data) }) )
   }
 
   addPlayer = () => this.setState(
