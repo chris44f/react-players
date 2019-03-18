@@ -3,23 +3,20 @@
   "lastname": "Last Name",
   "sport": "Sport",
   "club": "Club",
-  "city": "City",
   "id": 1
 },
 {
   "firstname": "Ben",
   "lastname": "Simmons",
   "sport": "Basketball",
-  "club": "76ers",
-  "city": "Philadelphia",
+  "club": "Philadelphia 76ers",
   "id": 2
 },
 {
   "firstname": "Joel",
   "lastname": "Embiid",
   "sport": "Basketball",
-  "club": "76ers",
-  "city": "Philadelphia",
+  "club": "Philadelphia 76ers",
   "id": 3
 },
 {
@@ -27,7 +24,6 @@
   "lastname": "Campbell",
   "sport": "Football",
   "club": "Frosinone",
-  "city": "Lazio",
   "id": 4
 },
 {
@@ -35,54 +31,47 @@
   "lastname": "Milinkovic-Savic",
   "sport": "Football",
   "club": "S.S. Lazio",
-  "city": "Lazio",
   "id": 5
 },
 {
   "firstname": "Lebron",
   "lastname": "James",
   "sport": "Basketball",
-  "club": "Lakers",
-  "city": "Los Angeles",
+  "club": "LA Lakers",
   "id": 6
 },
 {
   "firstname": "Todd",
   "lastname": "Gurley",
   "sport": "American Football",
-  "club": "Rams",
-  "city": "Los Angeles",
+  "club": "LA Rams",
   "id": 7
 },
 {
   "firstname": "Odell",
   "lastname": "Beckham Jr",
   "sport": "American Football",
-  "club": "Giants",
-  "city": "New York",
+  "club": "New York Giants",
   "id": 8
 },
 {
-  "firstname": "Aaron",
-  "lastname": "Ramsey",
+  "firstname": "Marcus",
+  "lastname": "Rashford",
   "sport": "Football",
-  "club": "Arsenal",
-  "city": "London",
+  "club": "Manchester United",
   "id": 9
 },
 {
-  "firstname": "Eden",
-  "lastname": "Hazard",
+  "firstname": "Phil",
+  "lastname": "Foden",
   "sport": "Football",
-  "club": "Chelsea",
-  "city": "London",
+  "club": "Manchester City",
   "id": 10
 },
 {
-  "firstname": "Aaron",
-  "lastname": "Rodgers",
+  "firstname": "Phil",
+  "lastname": "Rivers",
   "sport": "American Football",
-  "club": "Packers",
-  "city": "Green Bay",
+  "club": "LA Chargers",
   "id": 11
 }]
