@@ -16,10 +16,10 @@ class Table extends Component {
     ]
   }
 
-  componentWillMount() {
-    fetch('/Users/Chris/workspace/react-players/public/db.json')
+  componentDidMount() {
+    fetch('https://my-json-server.typicode.com/chris44f/react-players/')
     .then( response => response.json() )
-    .then( data => this.setState({ players: JSON.parse(data) }) )
+    .then( data => console.log(JSON.parse(data)) )
   }
 
   addPlayer = () => this.setState(
