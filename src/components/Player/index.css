@@ -1,11 +1,3 @@
-.playerWrapperElement {
-  border-right: black solid 2px;
-  padding: 10px;
-  border-bottom: blue solid 1px;
-  border-width: 2px;
-  width: 15vw;
-  display: inline-table;
-}
 
 input {
   border-style: none;

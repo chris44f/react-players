@@ -2,178 +2,132 @@ import React, { Component } from 'react';
 import './index.css';
 import Player from '../Player/index.js'
 
-
+// TODO: make the add player bit just a button at the side and then a form appears below the button with the inputs when clicked
+// TODO: move the filter list to the right, and maybe have a summary button, i.e. "Filter?" then filter choices appear when clicked
+// TODO: clicking on a row gives more detail on the right, with an image pop up also??!? how sick would that be
 
 class Table extends Component {
+
   state = {
-    players: [
-      {firstname: "First Name",
-      lastname: "Last Name",
-      sport: "Sport",
-      club: "Club",
-      city: "City",
-      id: 1}
-    ]
+    players: [],
+    filteredPlayers: []
   }
 
-  componentDidMount() {
-    fetch('https://my-json-server.typicode.com/chris44f/react-players/')
-    .then( response => response.json() )
-    .then( data => console.log(JSON.parse(data)) )
+  componentDidMount(){
+    fetch('/db.json')
+    .then( response => response.json())
+    .then( json => this.setState({ players: json, filteredPlayers: json}))
   }
 
-  addPlayer = () => this.setState(
-    {
-      players: (
-        this.state.players.concat(
-          {
-            firstname: this.state.firstNameInput,
-            lastname: this.state.lastNameInput,
-            sport: this.state.sportInput,
-            club: this.state.clubInput,
-            city: this.state.cityInput,
-            id: this.state.players.length + 1
-          }
-        )
-      )
+  addPlayer = () => {
+    const newPlayer = {
+      firstname: this.state.firstNameInput,
+      lastname: this.state.lastNameInput,
+      sport: this.state.sportInput,
+      club: this.state.clubInput,
+      id: this.state.players.length + 1,
     }
-  )
+    this.setState(
+      {
+        players: this.state.players.concat(newPlayer),
+        filteredPlayers: this.state.filteredPlayers.concat(newPlayer),
+        firstNameInput: ""
+      }
+    )
+  }
 
-  cityFilter = (location) => this.setState(
-    {
-      players: (
-        this.state.players.filter(player => {
-          for(let i=0, filter=""; i<player.city.length; i++){
-            filter += player.city.charAt(i)
-            if(filter === location){
-              return player
-            }
-          }
-        })
-      )
-    }
-  )
+  nameFilter = (name) => {
+    let filteredTable = this.state.players
+    filteredTable = filteredTable.filter((player) => {
+      return player.firstname.toLowerCase().includes(name.toLowerCase())
+    })
+    this.setState({filteredPlayers: filteredTable})
+  }
 
-  nameFilter = (name) => this.setState(
-    {
-      players: (
-        this.state.players.filter(player => {
-          for(let i=0, filter=""; i<player.firstname.length; i++){
-            filter += player.firstname.charAt(i)
-            if(filter === name){
-              return player
-            }
-          }
-        })
-      )
-    }
-  )
+  clubFilter = (club) => {
+    const tableToFilter = this.state.players
+    let filteredTable = tableToFilter.filter((player) => {
+      return player.club.toLowerCase().includes(club.toLowerCase())
+    })
+    this.setState({filteredPlayers: filteredTable})
+  }
 
-  sportFilter = (game) => this.setState(
-    {
-      players: (
-        this.state.players.filter(player => {
-          for(let i=0, filter=""; i<player.sport.length; i++){
-            filter += player.sport.charAt(i)
-            if(filter === game){
-              return player
-            }
-          }
-        })
-      )
-    }
-  )
+  sportFilter = (sport) => {
+    const tableToFilter = this.state.players
+    let filteredTable = tableToFilter.filter((player) => {
+      return player.sport.toLowerCase().includes(sport.toLowerCase())
+    })
+    this.setState({filteredPlayers: filteredTable})
+  }
 
-  // genericButtonFilter = (game) => this.setState(
-  //   {
-  //     players: (
-  //       this.state.players.filter(player => {
-  //         if(player.sport === game){
-  //           return player
-  //         }
-  //       })
-  //     )
-  //   }
-  // )
-
-  updateFirstName = (event) => this.setState({ firstNameInput: event.target.value })
+  updateFirstName = (e) => this.setState({ firstNameInput: e })
   updateLastName = (event) => this.setState({ lastNameInput: event.target.value })
   updateSport = (event) => this.setState({ sportInput: event.target.value })
   updateCity = (event) => this.setState({ cityInput: event.target.value })
   updateClub = (event) => this.setState({ clubInput: event.target.value })
 
-  updateCityFilter = (event) => this.cityFilter(event.target.value)
-  updateNameFilter = (event) => this.nameFilter(event.target.value)
-  updateSportFilter = (event) => this.sportFilter(event.target.value)
-
-  render() {
+  render(){
     return(
       <div>
         <h1> Table to show sports players across the world </h1>
         <h3> Currently, there are {this.state.players.length} players documented
         within this table. </h3>
-        {this.state.players.map(player => (
+        <table>
+          <thead>
+            <th className="tableColumn">First Name</th>
+            <th className="tableColumn">Last Name</th>
+            <th className="tableColumn">Sport</th>
+            <th className="tableColumn">Club</th>
+          </thead>
+          <tbody>
+        {this.state.filteredPlayers.map(player => (
           <Player
             firstname={player.firstname}
             lastname={player.lastname}
             sport={player.sport}
             club={player.club}
-            city={player.city}
             id={player.id}
-            updateFirstName={this.updateFirstName}
-            updateLastName={this.updateLastName}
-            updateSport={this.updateSport}
-            updateCity={this.updateCity}
-            updateClub={this.updateClub}
-            addPlayer={this.addPlayer}
-            cityFilter={this.cityFilter}
-            nameFilter={this.nameFilter}
-            sportFilter={this.sportFilter}
-            updateFilter={this.updateFilter}
           />
         ))}
+        </tbody>
+        </table>
         <input
         className="playerWrapperElement"
-        onChange={(event)=>this.updateFirstName(event)}
-        defaultValue="Enter First Name"
+        onChange={(event)=>this.updateFirstName(event.target.value)}
+        placeholder="Enter First Name"
         />
         <input
         className="playerWrapperElement"
         onChange={(event)=>this.updateLastName(event)}
-        defaultValue="Enter Last Name"></input>
+        placeholder="Enter Last Name"></input>
         <input
         className="playerWrapperElement"
         onChange={(event)=>this.updateSport(event)}
-        defaultValue="Enter Sport"
-        />
-        <input
-        className="playerWrapperElement"
-        onChange={(event)=>this.updateCity(event)}
-        defaultValue="Enter City"
+        placeholder="Enter Sport"
         />
         <input
         className="playerWrapperElement"
         onChange={(event)=>this.updateClub(event)}
-        defaultValue="Enter Club"
+        placeholder="Enter Club"
         />
         <button onClick={()=>this.addPlayer()}>Add sportsman</button>
         <h4>Filters:</h4>
         Filter by first name:
         <input
         className="filterInput"
-        onChange={(event)=>this.updateNameFilter(event)}
+        onChange={(event)=>this.nameFilter(event.target.value)}
         />
         <br />
         Filter by city:
         <input
         className="filterInput"
-        onChange={(event)=>this.updateCityFilter(event)}
+        onChange={(event)=>this.cityFilter(event.target.value)}
         />
         <br />
         Filter by sport:
         <input
         className="filterInput"
-        onChange={(event)=>this.updateSportFilter(event)}
+        onChange={(event)=>this.sportFilter(event.target.value)}
         />
       </div>
     )

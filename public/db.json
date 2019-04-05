@@ -1,7 +1,8 @@
 [{
-  "firstname": "First Name",
-  "sport": "Sport",
-  "club": "Club",
+  "firstname": "Phil",
+  "lastname": "Rivers",
+  "sport": "American Football",
+  "club": "LA Chargers",
   "id": 1
 },
 {
@@ -66,11 +67,5 @@
   "sport": "Football",
   "club": "Manchester City",
   "id": 10
-},
-{
-  "firstname": "Phil",
-  "lastname": "Rivers",
-  "sport": "American Football",
-  "club": "LA Chargers",
-  "id": 11
-}]
+}
+]

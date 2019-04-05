@@ -4,13 +4,12 @@ import './index.css';
 class Player extends Component {
   render() {
     return (
-      <div>
-        <div className="playerWrapperElement"> {this.props.firstname} </div>
-        <div className="playerWrapperElement"> {this.props.lastname} </div>
-        <div className="playerWrapperElement"> {this.props.sport} </div>
-        <div className="playerWrapperElement"> {this.props.city} </div>
-        <div className="playerWrapperElement"> {this.props.club} </div>
-      </div>
+      <tr>
+        <td className="tableColumn"> {this.props.firstname} </td>
+        <td className="tableColumn"> {this.props.lastname} </td>
+        <td className="tableColumn"> {this.props.sport} </td>
+        <td className="tableColumn"> {this.props.club} </td>
+      </tr>
     )
   }
 }
