@@ -1,0 +1,8 @@
+.optionsWrapper {
+  display: block;
+  position:fixed;
+  right: 1vw;
+  top: 20vh;
+  width: 30vw;
+  border: 1px solid green
+}

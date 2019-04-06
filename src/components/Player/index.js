@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import './index.css';
 
-class Player extends Component {
-  render() {
+const Player = props => {
     return (
       <tr>
-        <td className="tableColumn"> {this.props.firstname} </td>
-        <td className="tableColumn"> {this.props.lastname} </td>
-        <td className="tableColumn"> {this.props.sport} </td>
-        <td className="tableColumn"> {this.props.club} </td>
+        <td className="tableColumn"> {props.firstname} </td>
+        <td className="tableColumn"> {props.lastname} </td>
+        <td className="tableColumn"> {props.sport} </td>
+        <td className="tableColumn"> {props.club} </td>
       </tr>
     )
-  }
 }
 
 export default Player;
