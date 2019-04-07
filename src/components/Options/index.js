@@ -28,11 +28,12 @@ class Options extends Component {
 
     return(
       <div className="optionsWrapper">
-        <span>To add a player:</span><button onClick={()=>this.handlePlayer()}>click here</button>
+        <button onClick={()=>this.handlePlayer()}>{ this.state.playerAddOn ? "Hide detail" : "Add Player"}</button>
         <br /> {displayForm} <br />
-        <span>To apply a filter:</span><button onClick={()=>this.handleFilters()}>click here</button>
+        <button onClick={()=>this.handleFilters()}>{ this.state.filtersOn ? "Hide filters" : "Filter table"}</button>
         <br /> {displayFilters} <br />
         <span>Alternatively, to view a player in more detail, click the player's name within the table</span>
+        <br /><br />
       </div>
     )
   }

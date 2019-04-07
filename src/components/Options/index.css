@@ -4,5 +4,39 @@
   right: 1vw;
   top: 20vh;
   width: 30vw;
-  border: 1px solid green
+  border: 1px solid green;
+  text-align: center;
+}
+
+button {
+  width: 15vw;
+  min-height: 3vh;
+  border: 0.5px solid red;
+  border-radius: 10px;
+  margin: 1vh 1vw;
+  outline: none;
+}
+
+button:active {
+  box-shadow: 1px 1px 1px 1px #a4a4a4
+}
+
+.newPlayer input {
+  min-height: 3vh;
+  min-width: 20vw;
+  background-color: #eeeeee;
+  margin: 1vh
+}
+
+.newPlayer button {
+  width: 10vw;
+  background-color: #eeeeee;
+  border: 1px solid black;
+  color: red;
+  left: 10vw;
+}
+
+.filters input {
+  background-color: #eeeeee;
+  margin: 1vh 1vw;
 }

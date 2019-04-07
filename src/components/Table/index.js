@@ -3,7 +3,6 @@ import './index.css';
 import Player from '../Player'
 import Options from '../Options'
 
-// TODO: make the options styled
 // TODO: clicking on a row gives more detail on the right, with an image pop up also??!?
 // TODO: allow more add details in add form if button 'more details' selected
 
